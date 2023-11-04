@@ -4,7 +4,6 @@ from src.Database import Database
 # application properties
 PRINT_TEXT = '\nEnter commands...\n [SET VALUE] set `key` `value`\n [GET VALUE] get `key`\n [TERMINATE] exit'
 DATAFILES_DIR = 'datafiles'
-ACTIVE_LOG = 'datafile.log'
 
 # store {key} {data}                      Store the key value pair in the DB
 # get {key}                               Retrieve the value for key. Returns None if it doesnt exist
