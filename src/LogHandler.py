@@ -1,5 +1,4 @@
 import os
-
 ACTIVE_LOG = 'datafile.log'
 
 def singleton(class_): # singleton 출처 : https://jh-bk.tistory.com/43
@@ -29,9 +28,14 @@ class LogReader:
     self.datafilesDir = datafilesDir
     self.activeLog = ACTIVE_LOG
 
-  def read(self, key):
+  def read(self, key, index=None):
     with open(os.path.join(self.datafilesDir, self.activeLog), 'r') as f:
       kvs = [line.strip() for line in f]
+      if index:
+        print('by index')
+        _, value = splitKv(kvs[index])
+        return value
+      print('fullscan')
       for kv in reversed(kvs):
         k, v = splitKv(kv)
         if k == key:
