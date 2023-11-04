@@ -1,1 +1,7 @@
+.DS_Store
+
 LSM-Tree/
+images/
+
+**/**/__pycache__
+**/*.log

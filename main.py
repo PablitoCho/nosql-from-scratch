@@ -1,4 +1,9 @@
-import sys
+import sys, os
+from src.Database import Database
+
+# application properties
+PRINT_TEXT = '\nEnter commands...\n [SET VALUE] set `key` `value`\n [GET VALUE] get `key`\n [TERMINATE] exit'
+DATAFILES_DIR = 'datafiles'
 
 # store {key} {data}                      Store the key value pair in the DB
 # get {key}                               Retrieve the value for key. Returns None if it doesnt exist
@@ -13,16 +18,20 @@ import sys
 # exit                                    Quit the program. Your instance will be saved to disk.
 
 def main():
-  print("Toy NoSQL Database")
+  database = Database(datafilesDir=DATAFILES_DIR)
   while True:
-    print('\nEnter commands...\n (Guide)\n [SET VALUE] set `key` `value`\n [GET VALUE] get `key`\n [TERMINATE] exit')
+    print(PRINT_TEXT)
     cmd = input('$ ').lower().split(' ')
     if cmd[0] == 'exit':
       break
     elif len(cmd) == 3 and cmd[0] == 'set':
-      print(f'set data key {cmd[1]} value {cmd[2]}')
+      key = cmd[1]
+      value = cmd[2]
+      database.set(key, value)
     elif len(cmd) == 2 and cmd[0] == 'get':
-      print(f'get data key {cmd[1]}')
+      key = cmd[1]
+      value = database.get(key)
+      print(value)
     else:
       print('Invalid command.')
 
