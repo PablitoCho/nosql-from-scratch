@@ -3,7 +3,7 @@ from src.Database import Database
 
 # application properties
 PRINT_TEXT = '\nEnter commands...\n [SET VALUE] set `key` `value`\n [GET VALUE] get `key`\n [TERMINATE] exit'
-DATAFILES_DIR = 'datafiles'
+SEGMENTS_DIR = 'segments'
 
 # store {key} {data}                      Store the key value pair in the DB
 # get {key}                               Retrieve the value for key. Returns None if it doesnt exist
@@ -18,7 +18,7 @@ DATAFILES_DIR = 'datafiles'
 # exit                                    Quit the program. Your instance will be saved to disk.
 
 def main():
-  database = Database(datafilesDir=DATAFILES_DIR)
+  database = Database(segmentsDir=SEGMENTS_DIR)
   while True:
     print(PRINT_TEXT)
     cmd = input('$ ').lower().split(' ')

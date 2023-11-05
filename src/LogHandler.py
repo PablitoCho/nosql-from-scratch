@@ -11,10 +11,10 @@ def singleton(class_): # singleton 출처 : https://jh-bk.tistory.com/43
 
 @singleton
 class LogAppender:
-  def __init__(self, datafilesDir):
-    self.datafilesDir = datafilesDir
+  def __init__(self, segmentsDir):
+    self.segmentsDir = segmentsDir
     self.activeLog = ACTIVE_LOG
-    self.stream = open(os.path.join(self.datafilesDir, self.activeLog), 'a')
+    self.stream = open(os.path.join(self.segmentsDir, self.activeLog), 'a')
   
   def write(self, log):
     try:
@@ -24,12 +24,12 @@ class LogAppender:
       print("File stream not opened")
 
 class LogReader:
-  def __init__(self, datafilesDir):
-    self.datafilesDir = datafilesDir
+  def __init__(self, segmentsDir):
+    self.segmentsDir = segmentsDir
     self.activeLog = ACTIVE_LOG
 
   def read(self, key, index=None):
-    with open(os.path.join(self.datafilesDir, self.activeLog), 'r') as f:
+    with open(os.path.join(self.segmentsDir, self.activeLog), 'r') as f:
       kvs = [line.strip() for line in f]
       if index:
         print('by index')
